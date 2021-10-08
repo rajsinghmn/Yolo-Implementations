@@ -14,7 +14,7 @@ torch.manual_seed(seed)
 
 # hyperparams
 LEARNING_RATE = 2e-5
-DEVICE = "cpu"#"cuda" if torch.cuda.is_available() else "cpu"
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 BATCH_SIZE = 16
 WEIGHT_DECAY = 0
 EPOCHS = 100
