@@ -62,7 +62,7 @@ def main():
     if LOAD_MODEL:
         load_checkpoint(torch.load(LOAD_MODEL_FILE), model, optimizer)
 
-    train_dataset = VOCDataset("data/8examples.csv",
+    train_dataset = VOCDataset("data/100examples.csv",
         transform=transform,
         img_dir=IMG_DIR,
         label_dir=LABEL_DIR,
@@ -97,7 +97,8 @@ def main():
         mean_average_prec = mean_average_precision(
             pred_boxes, target_boxes, iou_threshold=0.5, box_format="midpoint"
         )
-        print("Train mAP: {:.4f}".format(mean_average_prec))
+        # print("Train mAP: {:.4f}".format(mean_average_prec))
+        print(f"Train mAP: {mean_average_prec}")
 
         train_fn(train_loader, model, optimizer, loss_fn)
 

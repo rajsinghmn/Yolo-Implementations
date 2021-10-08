@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from COMMON import architecture_config
+from backbones import architecture_config
 
 class CNNBlock(nn.Module):
     def __init__(self, in_channels, out_channels, **kwargs):
@@ -77,13 +77,13 @@ class YoloV1(nn.Module):
         S, B, C = split_size, num_boxes, num_classes
         return nn.Sequential(
             nn.Flatten(),
-            nn.Linear(1024 * S * S , 4096),
+            nn.Linear(1024 * S * S , 496),
             nn.Dropout(0.0),
             nn.LeakyReLU(0.1),
-            nn.Linear(4096, S * S * (C + B * 5))
+            nn.Linear(496, S * S * (C + B * 5))
         )
 
-# move to test
+# todo: rsm: move to test
 # def test(S=7,B=2,C=20):
 #     model = YoloV1(split_size=S, num_boxes=B, num_classes=C)
 #     x = torch.randn( (2, 3, 448, 448) )    
